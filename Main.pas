@@ -152,22 +152,18 @@ begin
   DataDisplay(stringOutput);
 end;
 
-function NOD(var valueA: Integer; var valueB: Integer): Integer;
+function NOD (var valueA: Integer; var valueB: Integer): Integer;
 var
-  i: Integer;
-  remainA, remainB: Integer;
+  tempValue: Integer;
 begin
-  for i := valueA downto 1 do
+  while valueB > 0 do
   begin
-    remainA :=  valueA mod i;
-    remainB := valueB mod i;
-    if (remainA = 0) and (remainB = 0) then
-    begin
-      Result := i;
-      exit;
-    end;
+    tempValue := valueA mod valueB;
+    valueA := valueB;
+    valueB := tempValue;
   end;
-  Result := 1;
+
+  result := valueA;
 end;
 
 procedure ChunkOfText (var Chunk: String; txt: String; position: Integer);
